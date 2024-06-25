@@ -87,7 +87,7 @@ export const projectsData: Project[] = [
     links: [
       {
         icon: FaGithub,
-        url: "https://github.com/yourusername/virtual-community",
+        url: "https://github.com/rajand2510/tatvasoft_internship/tree/master/Final",
       },
     ],
   },
@@ -100,7 +100,7 @@ export const projectsData: Project[] = [
     links: [
       {
         icon: FaFigma,
-        url: "https://www.figma.com/file/yourfile",
+        url: "https://www.figma.com/design/uO6LscGFCLI30otBkeljFC/Oneonic?node-id=0-1",
       },
     ],
   },
@@ -113,7 +113,7 @@ export const projectsData: Project[] = [
     links: [
       {
         icon: FaGithub,
-        url: "https://github.com/yourusername/pixelslim",
+        url: "https://github.com/rajand2510/pixel-slim-image-compressor",
       },
     ],
   },
@@ -126,7 +126,7 @@ export const projectsData: Project[] = [
     links: [
       {
         icon: FaFigma,
-        url: "https://www.figma.com/file/anotherfile",
+        url: "https://www.figma.com/community/file/1387491949884101289/vr-app",
       },
     ],
   },
