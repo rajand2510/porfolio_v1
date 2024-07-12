@@ -9,6 +9,7 @@ import pgone from "@/public/pgone.png";
 import pgtwo from "@/public/pgtwo.png";
 import oneonic from "@/public/oneonic.png";
 import pgthree from "@/public/pgthree.png";
+import roomcraft from "@/public/roomcraft.png";
 export const links = [
   {
     name: "Home",
@@ -79,9 +80,35 @@ interface Project {
 
 export const projectsData: Project[] = [
   {
+    title: " Room Craft",
+    description:
+      "Roomcraft is an innovative e-commerce platform for exploring and purchasing home decor items with 3D and AR views.",
+    tags: ["React", "NodeJs", "MongoDB", "Tailwind"],
+    imageUrl: roomcraft,
+    links: [
+      {
+        icon: FaGithub,
+        url: "https://github.com/rajand2510/RoomCraft",
+      },
+    ],
+  },
+  {
+    title: "Pixelslim-Image Compression",
+    description:
+      "Pixel Slim is a React web app that shrinks images using advanced libraries for a smooth user experience.",
+    tags: ["React", "browser-image-compression", "Css"],
+    imageUrl: pgone,
+    links: [
+      {
+        icon: FaGithub,
+        url: "https://github.com/rajand2510/pixel-slim-image-compressor",
+      },
+    ],
+  },
+  {
     title: "Virtual Community",
     description:
-      "This project will involve actively participating in various social work community events, allowing me to gain firsthand experience in how these events foster collaboration",
+      "This project will involve participating in social work events to gain firsthand experience in collaboration",
     tags: ["Angular", "Dotnet", "PostgreSQL", "Tailwind"],
     imageUrl: pgtwo,
     links: [
@@ -104,19 +131,7 @@ export const projectsData: Project[] = [
       },
     ],
   },
-  {
-    title: "Pixelslim-Image Compression",
-    description:
-      "Pixel Slim is a React web app that shrinks images using advanced libraries for a smooth user experience.",
-    tags: ["React", "browser-image-compression", "Css"],
-    imageUrl: pgone,
-    links: [
-      {
-        icon: FaGithub,
-        url: "https://github.com/rajand2510/pixel-slim-image-compressor",
-      },
-    ],
-  },
+
   {
     title: "VR-UI",
     description:
