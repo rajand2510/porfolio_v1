@@ -10,6 +10,7 @@ import pgtwo from "@/public/pgtwo.png";
 import oneonic from "@/public/oneonic.png";
 import pgthree from "@/public/pgthree.png";
 import roomcraft from "@/public/roomcraft.png";
+import roomcraft_npm from "@/public/pgfour.png";
 export const links = [
   {
     name: "Home",
@@ -79,6 +80,19 @@ interface Project {
 }
 
 export const projectsData: Project[] = [
+  {
+    title: " NPM - roomcraft",
+    description:
+      "RoomCraft: Seamless 3D & AR product viewing, enhancing eCommerce with interactive, immersive shopping experiences.",
+    tags: ["React", "NodeJs", "MongoDB", "Tailwind"],
+    imageUrl: roomcraft_npm,
+    links: [
+      {
+        icon: FaGithub,
+        url: "https://github.com/rajand2510/npm-roomcraft",
+      },
+    ],
+  },
   {
     title: " Room Craft",
     description:
