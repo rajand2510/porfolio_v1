@@ -39,11 +39,19 @@ export const links = [
 ] as const;
 
 export const experiencesData = [
+   {
+    title: "MERN Stack Developer Intern",
+    location: "Technowire data science limited",
+    description:
+      "A full-stack web application built with React and Node.js, focused on financial product reporting. The platform displays detailed information about a company's products and services, providing a structured and interactive user experience.",
+    icon: React.createElement(FaReact),
+    date: "April 2025 - Present",
+  },
   {
     title: "Full-Stack Development Intern",
     location: "Tatvasoft",
     description:
-      "Developed web applications using Angular, .NET, and PostgreSQL. Designed and optimized PostgreSQL databases with complex SQL queries. Created and integrated RESTful APIs using .NET.",
+      "Developed web applications using React, .NET, and PostgreSQL. Designed and optimized PostgreSQL databases with complex SQL queries. Created and integrated RESTful APIs using .NET.",
     icon: React.createElement(FaReact),
     date: "May 2024 - June 2024",
   },
@@ -61,7 +69,7 @@ export const experiencesData = [
     description:
       " Current CPI: 7.70 Gained comprehensive knowledge in software development, data structures, algorithms.",
     icon: React.createElement(LuGraduationCap),
-    date: "October 2021 - Present",
+    date: "October 2021 - April 2025",
   }
 ] as const;
 
