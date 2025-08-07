@@ -150,6 +150,10 @@ export const projectsData: Project[] = [
         icon: FaGithub,
         url: "https://github.com/rajand2510/pixel-slim-image-compressor",
       },
+       {
+        icon: FaLink,
+        url: "https://pixel-slim-image-compressor.vercel.app/",
+      },
     ],
   },
   {
