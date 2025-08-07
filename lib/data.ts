@@ -1,9 +1,9 @@
 import React from "react";
-import { StaticImageData } from 'next/image';
+import { StaticImageData } from "next/image";
 import { CgWorkAlt } from "react-icons/cg";
 import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
-import { FaGithub, FaFigma } from "react-icons/fa";
+import { FaGithub, FaFigma, FaLink } from "react-icons/fa";
 import { IconType } from "react-icons";
 import pgone from "@/public/pgone.png";
 import pgtwo from "@/public/pgtwo.png";
@@ -11,6 +11,7 @@ import oneonic from "@/public/oneonic.png";
 import pgthree from "@/public/pgthree.png";
 import roomcraft from "@/public/roomcraft.png";
 import roomcraft_npm from "@/public/pgfour.png";
+import blog_image from "@/public/blog.png";
 export const links = [
   {
     name: "Home",
@@ -39,7 +40,7 @@ export const links = [
 ] as const;
 
 export const experiencesData = [
-   {
+  {
     title: "MERN Stack Developer Intern",
     location: "Technowire data science limited",
     description:
@@ -70,9 +71,8 @@ export const experiencesData = [
       " Current CPI: 7.70 Gained comprehensive knowledge in software development, data structures, algorithms.",
     icon: React.createElement(LuGraduationCap),
     date: "October 2021 - April 2025",
-  }
+  },
 ] as const;
-
 
 interface ProjectLink {
   icon: IconType;
@@ -89,6 +89,23 @@ interface Project {
 
 export const projectsData: Project[] = [
   {
+    title: "Blogging Platform",
+    description:
+      "A full-stack blogging platform with authentication, post creation/editing, commenting, and search functionality. Built with Vite + React, Tailwind CSS, Node.js, and MongoDB.",
+    tags: ["React", "Vite", "Tailwind", "Node.js", "MongoDB"],
+    imageUrl: blog_image, // Replace with your actual image import
+    links: [
+      {
+        icon: FaGithub,
+        url: "https://github.com/rajand2510/blog-platform", // Replace with actual repo if different
+      },
+      {
+        icon: FaLink, // Optional external link icon
+        url: "https://chapter-5-blog.vercel.app/",
+      },
+    ],
+  },
+  {
     title: " NPM - roomcraft",
     description:
       "RoomCraft: Seamless 3D & AR product viewing, enhancing eCommerce with interactive, immersive shopping experiences.",
@@ -98,6 +115,10 @@ export const projectsData: Project[] = [
       {
         icon: FaGithub,
         url: "https://github.com/rajand2510/npm-roomcraft",
+      },
+      {
+        icon: FaLink,
+        url: "https://roomcraft.netlify.app/",
       },
     ],
   },
@@ -111,6 +132,10 @@ export const projectsData: Project[] = [
       {
         icon: FaGithub,
         url: "https://github.com/rajand2510/RoomCraft",
+      },
+      {
+        icon: FaLink,
+        url: "https://roomcraft-2.onrender.com/",
       },
     ],
   },
@@ -168,8 +193,6 @@ export const projectsData: Project[] = [
     ],
   },
 ];
-
-
 
 export const skillsData = [
   "HTML",
