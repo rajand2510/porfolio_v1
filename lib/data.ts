@@ -41,12 +41,20 @@ export const links = [
 
 export const experiencesData = [
   {
-    title: "MERN Stack Developer Intern",
-    location: "Technowire data science limited",
+    title: "React Developer",
+    location: "Tuvoc Technologies Pvt Ltd",
     description:
-      "A full-stack web application built with React and Node.js, focused on financial product reporting. The platform displays detailed information about a company's products and services, providing a structured and interactive user experience.",
-    icon: React.createElement(FaReact),
-    date: "April 2025 - Present",
+      "Working on building and optimizing dynamic, responsive web applications using React.js. Implementing reusable components, integrating REST APIs, and enhancing user experiences with modern UI/UX practices. Collaborating closely with the backend team to deliver high-performance, scalable solutions.",
+    icon: React.createElement(CgWorkAlt),
+    date: "July 2025 - Present",
+  },
+  {
+    title: "MERN Stack Developer Intern",
+    location: "Technowire Data Science Limited",
+    description:
+      "Developed a full-stack web application with React and Node.js, focusing on financial product reporting. Designed interactive dashboards to display detailed company product data in a structured format.",
+    icon: React.createElement(CgWorkAlt),
+    date: "April 2025 - July 2025",
   },
   {
     title: "Full-Stack Development Intern",
@@ -58,7 +66,7 @@ export const experiencesData = [
   },
   {
     title: "Front-End Intern",
-    location: "Edunet Foundation-IBM Skill build",
+    location: "Edunet Foundation - IBM Skill Build",
     description:
       "Mastered HTML, CSS, and JavaScript during internship. Built responsive web pages with dynamic features.",
     icon: React.createElement(CgWorkAlt),
@@ -66,13 +74,14 @@ export const experiencesData = [
   },
   {
     title: "BE - Computer Engineering",
-    location: "LDRP institute of technology and research Gandhinagr, Gujarat",
+    location: "LDRP Institute of Technology and Research, Gandhinagar, Gujarat",
     description:
-      " Current CPI: 7.70 Gained comprehensive knowledge in software development, data structures, algorithms.",
+      "CGPA: 8.18. Gained comprehensive knowledge in software development, data structures, and algorithms.",
     icon: React.createElement(LuGraduationCap),
     date: "October 2021 - April 2025",
   },
 ] as const;
+
 
 interface ProjectLink {
   icon: IconType;
