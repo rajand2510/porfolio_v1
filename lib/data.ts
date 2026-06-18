@@ -1,7 +1,6 @@
 import React from "react";
 import { StaticImageData } from "next/image";
 import { CgWorkAlt } from "react-icons/cg";
-import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import { FaGithub, FaFigma, FaLink } from "react-icons/fa";
 import { IconType } from "react-icons";
@@ -12,39 +11,23 @@ import pgthree from "@/public/pgthree.png";
 import roomcraft from "@/public/roomcraft.png";
 import roomcraft_npm from "@/public/pgfour.png";
 import blog_image from "@/public/blog.png";
+
 export const links = [
-  {
-    name: "Home",
-    hash: "#home",
-  },
-  {
-    name: "About",
-    hash: "#about",
-  },
-  {
-    name: "Projects",
-    hash: "#projects",
-  },
-  {
-    name: "Skills",
-    hash: "#skills",
-  },
-  {
-    name: "Experience",
-    hash: "#experience",
-  },
-  {
-    name: "Contact",
-    hash: "#contact",
-  },
+  { name: "Home", hash: "#home" },
+  { name: "About", hash: "#about" },
+  { name: "Process", hash: "#process" },
+  { name: "Projects", hash: "#projects" },
+  { name: "Skills", hash: "#skills" },
+  { name: "Experience", hash: "#experience" },
+  { name: "Contact", hash: "#contact" },
 ] as const;
 
 export const experiencesData = [
   {
-    title: "React Developer",
+    title: "Junior Software Engineer",
     location: "Tuvoc Technologies Pvt Ltd",
     description:
-      "Working on building and optimizing dynamic, responsive web applications using React.js. Implementing reusable components, integrating REST APIs, and enhancing user experiences with modern UI/UX practices. Collaborating closely with the backend team to deliver high-performance, scalable solutions.",
+      "Building full-stack web applications with the MERN stack — React frontends, Node/Express APIs, and MongoDB. Shipping reusable components, integrating REST services, and working closely with the backend team on performance and scalability.",
     icon: React.createElement(CgWorkAlt),
     date: "July 2025 - Present",
   },
@@ -52,36 +35,50 @@ export const experiencesData = [
     title: "MERN Stack Developer Intern",
     location: "Technowire Data Science Limited",
     description:
-      "Developed a full-stack web application with React and Node.js, focusing on financial product reporting. Designed interactive dashboards to display detailed company product data in a structured format.",
+      "Developed a full-stack financial reporting app with React and Node.js. Built interactive dashboards to surface company product data in a clear, structured layout.",
     icon: React.createElement(CgWorkAlt),
     date: "April 2025 - July 2025",
-  },
-  {
-    title: "Full-Stack Development Intern",
-    location: "Tatvasoft",
-    description:
-      "Developed web applications using React, .NET, and PostgreSQL. Designed and optimized PostgreSQL databases with complex SQL queries. Created and integrated RESTful APIs using .NET.",
-    icon: React.createElement(FaReact),
-    date: "May 2024 - June 2024",
-  },
-  {
-    title: "Front-End Intern",
-    location: "Edunet Foundation - IBM Skill Build",
-    description:
-      "Mastered HTML, CSS, and JavaScript during internship. Built responsive web pages with dynamic features.",
-    icon: React.createElement(CgWorkAlt),
-    date: "June 2023 - July 2023",
   },
   {
     title: "BE - Computer Engineering",
     location: "LDRP Institute of Technology and Research, Gandhinagar, Gujarat",
     description:
-      "CGPA: 8.18. Gained comprehensive knowledge in software development, data structures, and algorithms.",
+      "CGPA: 8.18. Core focus on software development, data structures, and algorithms.",
     icon: React.createElement(LuGraduationCap),
     date: "October 2021 - April 2025",
   },
 ] as const;
 
+export const workProcessData = [
+  {
+    phase: "01",
+    title: "Listen first",
+    summary: "I start by understanding the actual problem — who's affected, what already exists, and what success looks like.",
+    detail:
+      "Stakeholder calls, existing codebase review, user flows on paper. No code until the scope is clear.",
+  },
+  {
+    phase: "02",
+    title: "Sketch & scope",
+    summary: "Wireframes, task breakdown, and a realistic timeline before touching production code.",
+    detail:
+      "Figma for UI when needed. Jira or a simple checklist for tasks. Edge cases get named early.",
+  },
+  {
+    phase: "03",
+    title: "Build in slices",
+    summary: "Vertical slices over horizontal layers — ship something working end-to-end, then iterate.",
+    detail:
+      "MERN by default: MongoDB schema, Express routes, React components. PRs stay small and reviewable.",
+  },
+  {
+    phase: "04",
+    title: "Ship & learn",
+    summary: "Deploy, watch real usage, fix what breaks, document what stuck.",
+    detail:
+      "Monitoring, quick hotfixes, retro notes. The loop closes when the feature works for real users.",
+  },
+] as const;
 
 interface ProjectLink {
   icon: IconType;
@@ -100,109 +97,73 @@ export const projectsData: Project[] = [
   {
     title: "Blogging Platform",
     description:
-      "A full-stack blogging platform with authentication, post creation/editing, commenting, and search functionality. Built with Vite + React, Tailwind CSS, Node.js, and MongoDB.",
+      "Full-stack blogging platform with auth, post CRUD, comments, and search. Vite + React, Tailwind, Node.js, MongoDB.",
     tags: ["React", "Vite", "Tailwind", "Node.js", "MongoDB"],
-    imageUrl: blog_image, // Replace with your actual image import
+    imageUrl: blog_image,
     links: [
-      {
-        icon: FaGithub,
-        url: "https://github.com/rajand2510/blog-platform", // Replace with actual repo if different
-      },
-      {
-        icon: FaLink, // Optional external link icon
-        url: "https://chapter-5-blog.vercel.app/",
-      },
+      { icon: FaGithub, url: "https://github.com/rajand2510/blog-platform" },
+      { icon: FaLink, url: "https://chapter-5-blog.vercel.app/" },
     ],
   },
   {
-    title: " NPM - roomcraft",
+    title: "NPM — roomcraft",
     description:
-      "RoomCraft: Seamless 3D & AR product viewing, enhancing eCommerce with interactive, immersive shopping experiences.",
+      "3D & AR product viewing for eCommerce — immersive shopping without leaving the browser.",
     tags: ["React", "NodeJs", "MongoDB", "Tailwind"],
     imageUrl: roomcraft_npm,
     links: [
-      {
-        icon: FaGithub,
-        url: "https://github.com/rajand2510/npm-roomcraft",
-      },
-      {
-        icon: FaLink,
-        url: "https://roomcraft.netlify.app/",
-      },
+      { icon: FaGithub, url: "https://github.com/rajand2510/npm-roomcraft" },
+      { icon: FaLink, url: "https://roomcraft.netlify.app/" },
     ],
   },
   {
-    title: " Room Craft",
+    title: "Room Craft",
     description:
-      "Roomcraft is an innovative e-commerce platform for exploring and purchasing home decor items with 3D and AR views.",
+      "eCommerce platform for home decor with 3D and AR product previews.",
     tags: ["React", "NodeJs", "MongoDB", "Tailwind"],
     imageUrl: roomcraft,
     links: [
-      {
-        icon: FaGithub,
-        url: "https://github.com/rajand2510/RoomCraft",
-      },
-      {
-        icon: FaLink,
-        url: "https://roomcraft-2.onrender.com/",
-      },
+      { icon: FaGithub, url: "https://github.com/rajand2510/RoomCraft" },
+      { icon: FaLink, url: "https://roomcraft-2.onrender.com/" },
     ],
   },
   {
-    title: "Pixelslim-Image Compression",
+    title: "Pixelslim — Image Compression",
     description:
-      "Pixel Slim is a React web app that shrinks images using advanced libraries for a smooth user experience.",
-    tags: ["React", "browser-image-compression", "Css"],
+      "Client-side image compression in the browser — fast, private, no uploads required.",
+    tags: ["React", "browser-image-compression", "CSS"],
     imageUrl: pgone,
     links: [
-      {
-        icon: FaGithub,
-        url: "https://github.com/rajand2510/pixel-slim-image-compressor",
-      },
-       {
-        icon: FaLink,
-        url: "https://pixel-slim-image-compressor.vercel.app/",
-      },
+      { icon: FaGithub, url: "https://github.com/rajand2510/pixel-slim-image-compressor" },
+      { icon: FaLink, url: "https://pixel-slim-image-compressor.vercel.app/" },
     ],
   },
   {
     title: "Virtual Community",
     description:
-      "This project will involve participating in social work events to gain firsthand experience in collaboration",
+      "Social-work event platform for community collaboration and participation tracking.",
     tags: ["Angular", "Dotnet", "PostgreSQL", "Tailwind"],
     imageUrl: pgtwo,
     links: [
-      {
-        icon: FaGithub,
-        url: "https://github.com/rajand2510/tatvasoft_internship/tree/master/Final",
-      },
+      { icon: FaGithub, url: "https://github.com/rajand2510/tatvasoft_internship/tree/master/Final" },
     ],
   },
   {
-    title: "UI-OneOnic Solutions",
-    description:
-      "I led UI design for Onic Solution, crafting intuitive interfaces for user engagement.",
+    title: "UI — OneOnic Solutions",
+    description: "Led UI design for OneOnic — interfaces built around user engagement.",
     tags: ["Figma"],
     imageUrl: oneonic,
     links: [
-      {
-        icon: FaFigma,
-        url: "https://www.figma.com/design/uO6LscGFCLI30otBkeljFC/Oneonic?node-id=0-1",
-      },
+      { icon: FaFigma, url: "https://www.figma.com/design/uO6LscGFCLI30otBkeljFC/Oneonic?node-id=0-1" },
     ],
   },
-
   {
     title: "VR-UI",
-    description:
-      "I crafted a cutting-edge user interface tailored specifically for Virtual Reality environments",
+    description: "Interface system designed specifically for Virtual Reality environments.",
     tags: ["Figma"],
     imageUrl: pgthree,
     links: [
-      {
-        icon: FaFigma,
-        url: "https://www.figma.com/community/file/1387491949884101289/vr-app",
-      },
+      { icon: FaFigma, url: "https://www.figma.com/community/file/1387491949884101289/vr-app" },
     ],
   },
 ];
@@ -217,8 +178,8 @@ export const skillsData = [
   "Figma",
   "Node.js",
   "Git",
-  "DotNet",
   "Tailwind",
   "MongoDB",
   "PostgreSQL",
+  "Redis",
 ] as const;

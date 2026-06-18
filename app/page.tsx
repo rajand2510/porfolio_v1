@@ -1,19 +1,17 @@
 import About from "@/components/about";
 import Contact from "@/components/contact";
 import Experience from "@/components/experience";
+import HowIWork from "@/components/how-i-work";
 import Intro from "@/components/intro";
 import Projects from "@/components/projects";
-import SectionDivider from "@/components/section-divider";
 import Skills from "@/components/skills";
-import GradientCircle from "@/components/GradientCircle";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center px-4">
-      <GradientCircle/>
+    <main className="pt-20 sm:pt-28">
       <Intro />
-      <SectionDivider />
       <About />
+      <HowIWork />
       <Projects />
       <Skills />
       <Experience />

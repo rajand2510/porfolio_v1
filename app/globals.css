@@ -2,14 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  --line-color: #e5e7eb;
+:root {
+  --bg: #f4f1ec;
+  --bg-elevated: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #5c5c5c;
+  --accent: #d94f2b;
+  --accent-dim: rgba(217, 79, 43, 0.12);
+  --border: rgba(26, 26, 26, 0.1);
+  --grid-line: rgba(26, 26, 26, 0.06);
+  --key-bg: #e8e4de;
+  --key-active: #1a1a1a;
+  --key-text-active: #f4f1ec;
 }
 
 html.dark {
-  --line-color: rgba(255, 255, 255, 0.2);
+  --bg: #0c0c0c;
+  --bg-elevated: #161616;
+  --text: #ece8e1;
+  --text-muted: #9a9590;
+  --accent: #ff6b47;
+  --accent-dim: rgba(255, 107, 71, 0.15);
+  --border: rgba(236, 232, 225, 0.1);
+  --grid-line: rgba(236, 232, 225, 0.05);
+  --key-bg: #222222;
+  --key-active: #ece8e1;
+  --key-text-active: #0c0c0c;
 }
 
-.borderBlack {
-  @apply border border-black/10;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
