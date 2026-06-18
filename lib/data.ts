@@ -2,12 +2,10 @@ import React from "react";
 import { StaticImageData } from "next/image";
 import { CgWorkAlt } from "react-icons/cg";
 import { LuGraduationCap } from "react-icons/lu";
-import { FaGithub, FaFigma, FaLink } from "react-icons/fa";
+import { FaGithub, FaLink } from "react-icons/fa";
 import { IconType } from "react-icons";
 import pgone from "@/public/pgone.png";
 import pgtwo from "@/public/pgtwo.png";
-import oneonic from "@/public/oneonic.png";
-import pgthree from "@/public/pgthree.png";
 import roomcraft from "@/public/roomcraft.png";
 import roomcraft_npm from "@/public/pgfour.png";
 import blog_image from "@/public/blog.png";
@@ -157,24 +155,6 @@ export const projectsData: Project[] = [
     imageUrl: pgtwo,
     links: [
       { icon: FaGithub, url: "https://github.com/rajand2510/tatvasoft_internship/tree/master/Final" },
-    ],
-  },
-  {
-    title: "UI — OneOnic Solutions",
-    description: "Led UI design for OneOnic — interfaces built around user engagement.",
-    tags: ["Figma"],
-    imageUrl: oneonic,
-    links: [
-      { icon: FaFigma, url: "https://www.figma.com/design/uO6LscGFCLI30otBkeljFC/Oneonic?node-id=0-1" },
-    ],
-  },
-  {
-    title: "VR-UI",
-    description: "Interface system designed specifically for Virtual Reality environments.",
-    tags: ["Figma"],
-    imageUrl: pgthree,
-    links: [
-      { icon: FaFigma, url: "https://www.figma.com/community/file/1387491949884101289/vr-app" },
     ],
   },
 ];

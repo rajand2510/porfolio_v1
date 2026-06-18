@@ -134,7 +134,7 @@ export default function Intro() {
         {[
           { label: "Stack", value: "MERN" },
           { label: "CGPA", value: "8.18" },
-          { label: "Projects", value: "8+" },
+          { label: "Projects", value: "6+" },
         ].map((stat) => (
           <div key={stat.label}>
             <p className="font-display text-2xl font-bold">{stat.value}</p>
