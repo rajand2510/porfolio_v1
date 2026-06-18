@@ -11,6 +11,7 @@ import pgthree from "@/public/pgthree.png";
 import roomcraft from "@/public/roomcraft.png";
 import roomcraft_npm from "@/public/pgfour.png";
 import blog_image from "@/public/blog.png";
+import crictourn from "@/public/crictourn.png";
 
 export const links = [
   { name: "Home", hash: "#home" },
@@ -24,7 +25,7 @@ export const links = [
 
 export const experiencesData = [
   {
-    title: "Junior Software Engineer",
+    title: "Software Engineer",
     location: "Tuvoc Technologies Pvt Ltd",
     description:
       "Building full-stack web applications with the MERN stack — React frontends, Node/Express APIs, and MongoDB. Shipping reusable components, integrating REST services, and working closely with the backend team on performance and scalability.",
@@ -94,6 +95,16 @@ interface Project {
 }
 
 export const projectsData: Project[] = [
+  {
+    title: "CricTourn",
+    description:
+      "Cricket tournament management platform — teams, players, live auctions, fixtures, scoring, and points tables from one dashboard. Used to run a real-world tournament.",
+    tags: ["React", "Node.js", "MongoDB", "Tailwind"],
+    imageUrl: crictourn,
+    links: [
+      { icon: FaLink, url: "https://league.crictourn.space/" },
+    ],
+  },
   {
     title: "Blogging Platform",
     description:

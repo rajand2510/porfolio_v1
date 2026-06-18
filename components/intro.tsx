@@ -27,7 +27,7 @@ export default function Intro() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
           >
-            Junior Software Engineer · MERN Stack
+            Software Engineer · MERN Stack
           </motion.p>
 
           <motion.h1
@@ -134,7 +134,7 @@ export default function Intro() {
         {[
           { label: "Stack", value: "MERN" },
           { label: "CGPA", value: "8.18" },
-          { label: "Projects", value: "7+" },
+          { label: "Projects", value: "8+" },
         ].map((stat) => (
           <div key={stat.label}>
             <p className="font-display text-2xl font-bold">{stat.value}</p>

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import SectionHeading from "./section-heading";
 import { workProcessData } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
@@ -14,12 +14,19 @@ export default function HowIWork() {
   const [shiftHeld, setShiftHeld] = useState(false);
   const [spacePressed, setSpacePressed] = useState(false);
   const [inView, setInView] = useState(false);
+  const pressTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const lastSpaceRef = useRef(0);
+
+  const flashSpace = useCallback(() => {
+    setSpacePressed(true);
+    if (pressTimerRef.current) clearTimeout(pressTimerRef.current);
+    pressTimerRef.current = setTimeout(() => setSpacePressed(false), 100);
+  }, []);
 
   const nextStep = useCallback(() => {
     setStep((s) => (s + 1) % workProcessData.length);
-    setSpacePressed(true);
-    setTimeout(() => setSpacePressed(false), 150);
-  }, []);
+    flashSpace();
+  }, [flashSpace]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,7 +44,10 @@ export default function HowIWork() {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         e.preventDefault();
-        if (!e.repeat) nextStep();
+        const now = Date.now();
+        if (now - lastSpaceRef.current < 60) return;
+        lastSpaceRef.current = now;
+        nextStep();
       }
       if (e.key === "Shift") setShiftHeld(true);
     };
@@ -73,13 +83,10 @@ export default function HowIWork() {
             </span>
           </div>
 
-          <AnimatePresence mode="wait">
+          <div className="min-h-[160px]">
             <motion.div
-              key={`${step}-${shiftHeld}`}
-              initial={{ opacity: 0, x: shiftHeld ? -12 : 12 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
+              layout
+              transition={{ layout: { duration: 0.2, ease: "easeOut" } }}
             >
               <p className="font-mono text-accent text-sm mb-2">
                 Phase {current.phase}
@@ -91,7 +98,7 @@ export default function HowIWork() {
                 {shiftHeld ? current.detail : current.summary}
               </p>
             </motion.div>
-          </AnimatePresence>
+          </div>
 
           <div className="flex gap-2 mt-8">
             {workProcessData.map((_, i) => (

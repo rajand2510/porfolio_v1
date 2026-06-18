@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import SectionHeading from "./section-heading";
 import KeyboardKey from "./keyboard-key";
 import { useSectionInView } from "@/lib/hooks";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { IconType } from "react-icons";
 import {
   SiHtml5,
@@ -190,32 +190,30 @@ export default function Skills() {
             </span>
           </div>
 
-          <AnimatePresence initial={false}>
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: shiftHeld ? -8 : 8 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, transition: { duration: 0.08 } }}
-              transition={{ duration: 0.12 }}
-            >
-              {active && (
-                <>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="flex items-center justify-center w-12 h-12 rounded-lg bg-accent-dim text-accent">
-                      <ActiveIcon className="text-2xl" />
-                    </span>
-                    <div>
-                      <h3 className="font-display text-2xl font-bold">{active.name}</h3>
-                      <p className="font-mono text-xs text-accent">{active.category}</p>
-                    </div>
+          <div className="min-h-[180px]">
+            {active && (
+              <motion.div
+                layout
+                transition={{ layout: { duration: 0.2, ease: "easeOut" } }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <motion.span
+                    layout
+                    className="flex items-center justify-center w-12 h-12 rounded-lg bg-accent-dim text-accent"
+                  >
+                    <ActiveIcon className="text-2xl" />
+                  </motion.span>
+                  <div>
+                    <h3 className="font-display text-2xl font-bold">{active.name}</h3>
+                    <p className="font-mono text-xs text-accent">{active.category}</p>
                   </div>
-                  <p className="text-muted leading-relaxed text-lg">
-                    {shiftHeld ? active.detail : active.note}
-                  </p>
-                </>
-              )}
-            </motion.div>
-          </AnimatePresence>
+                </div>
+                <p className="text-muted leading-relaxed text-lg">
+                  {shiftHeld ? active.detail : active.note}
+                </p>
+              </motion.div>
+            )}
+          </div>
 
           <div className="flex gap-2 mt-8">
             {filtered.map((skill, i) => (
@@ -296,36 +294,28 @@ export default function Skills() {
             />
           </div>
 
-          <motion.ul layout className="flex flex-wrap gap-2 justify-center w-full max-w-md">
-            <AnimatePresence mode="popLayout">
-              {filtered.map((skill, i) => {
-                const Icon = skill.icon;
-                const isSelected = i === index;
-                return (
-                  <motion.li
-                    key={skill.name}
-                    layout
-                    initial={{ opacity: 0, scale: 0.85 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.85 }}
+          <ul className="flex flex-wrap gap-2 justify-center w-full max-w-md">
+            {filtered.map((skill, i) => {
+              const Icon = skill.icon;
+              const isSelected = i === index;
+              return (
+                <li key={skill.name}>
+                  <button
+                    onClick={() => selectSkill(skill.name)}
+                    className={`
+                      inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border rounded-lg transition-all duration-200
+                      ${isSelected
+                        ? "border-accent bg-accent text-white scale-105"
+                        : "border-line bg-surface text-ink hover:border-accent/50"}
+                    `}
                   >
-                    <button
-                      onClick={() => selectSkill(skill.name)}
-                      className={`
-                        inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium border rounded-lg transition-all
-                        ${isSelected
-                          ? "border-accent bg-accent text-white"
-                          : "border-line bg-surface text-ink hover:border-accent/50"}
-                      `}
-                    >
-                      <Icon className="text-sm" />
-                      {skill.name}
-                    </button>
-                  </motion.li>
-                );
-              })}
-            </AnimatePresence>
-          </motion.ul>
+                    <Icon className="text-sm" />
+                    {skill.name}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </section>

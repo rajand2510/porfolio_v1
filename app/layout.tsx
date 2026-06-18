@@ -30,7 +30,7 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata = {
   title: "Rajan Dhariyaparmar — Software Engineer",
-  description: "Junior Software Engineer building with the MERN stack.",
+  description: "Software Engineer building with the MERN stack.",
 };
 
 export default function RootLayout({
