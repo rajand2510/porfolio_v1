@@ -1,5 +1,6 @@
 "use client";
 
+import { FormEvent, useRef, useState } from "react";
 import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
@@ -9,12 +10,41 @@ import toast from "react-hot-toast";
 
 export default function Contact() {
   const { ref } = useSectionInView("Contact");
+  const formRef = useRef<HTMLFormElement>(null);
+  const [pending, setPending] = useState(false);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (pending) return;
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setPending(true);
+    try {
+      const result = await sendEmail(formData);
+
+      if (result.error) {
+        toast.error(result.error);
+        return;
+      }
+
+      toast.success("Message sent — I'll get back to you soon!");
+      form.reset();
+    } catch {
+      toast.error(
+        "Something went wrong. Please email rajandalvadi2510@gmail.com directly."
+      );
+    } finally {
+      setPending(false);
+    }
+  };
 
   return (
     <motion.section
       id="contact"
       ref={ref}
-      className="max-w-6xl mx-auto px-5 py-24 scroll-mt-16 border-t border-line"
+      className="max-w-6xl mx-auto px-5 py-24 scroll-mt-28 sm:scroll-mt-36 border-t border-line"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -35,32 +65,29 @@ export default function Contact() {
         </div>
 
         <form
+          ref={formRef}
           className="space-y-4"
-          action={async (formData) => {
-            const { error } = await sendEmail(formData);
-            if (error) {
-              toast.error(error);
-              return;
-            }
-            toast.success("Message sent — talk soon!");
-          }}
+          onSubmit={handleSubmit}
         >
           <input
-            className="w-full h-12 px-4 border border-line bg-surface text-ink placeholder:text-muted focus:border-accent focus:outline-none transition-colors"
+            className="w-full h-12 px-4 border border-line bg-surface text-ink placeholder:text-muted focus:border-accent focus:outline-none transition-colors disabled:opacity-60"
             name="senderEmail"
             type="email"
             required
             maxLength={500}
             placeholder="your@email.com"
+            autoComplete="email"
+            disabled={pending}
           />
           <textarea
-            className="w-full h-40 border border-line bg-surface p-4 text-ink placeholder:text-muted focus:border-accent focus:outline-none transition-colors resize-none"
+            className="w-full h-40 border border-line bg-surface p-4 text-ink placeholder:text-muted focus:border-accent focus:outline-none transition-colors resize-none disabled:opacity-60"
             name="message"
             placeholder="What's on your mind?"
             required
             maxLength={5000}
+            disabled={pending}
           />
-          <SubmitBtn />
+          <SubmitBtn pending={pending} />
         </form>
       </div>
     </motion.section>
