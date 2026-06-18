@@ -5,7 +5,7 @@ import ActiveSectionContextProvider from "@/context/active-section-context";
 import Footer from "@/components/footer";
 import ThemeSwitch from "@/components/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
-import { Toaster } from "react-hot-toast";
+import Toaster from "@/components/toaster";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -51,7 +51,7 @@ export default function RootLayout({
             <Header />
             {children}
             <Footer />
-            <Toaster position="top-right" />
+            <Toaster />
             <ThemeSwitch />
           </ActiveSectionContextProvider>
         </ThemeContextProvider>
