@@ -57,7 +57,7 @@ export const sendEmail = async (
     const safeEmail = escapeHtml(trimmedEmail);
     const safeMessage = escapeHtml(trimmedMessage).replace(/\n/g, "<br>");
 
-    const { error } = await resend.emails.send({
+    await resend.emails.send({
       from: CONTACT_FROM,
       to: CONTACT_TO,
       subject: `Portfolio message from ${trimmedEmail}`,
@@ -72,15 +72,6 @@ export const sendEmail = async (
       `,
       text: `New portfolio contact message\n\nFrom: ${trimmedEmail}\n\nMessage:\n${trimmedMessage}`,
     });
-
-    if (error) {
-      console.error("Resend error:", error);
-      return {
-        error:
-          error.message ||
-          "Failed to send message. Please email rajandalvadi2510@gmail.com directly.",
-      };
-    }
 
     return { success: true };
   } catch (error: unknown) {
