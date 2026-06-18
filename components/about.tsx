@@ -31,7 +31,6 @@ const aboutTopics = [
       "MongoDB for data modeling, Express for REST APIs, React for interfaces, Node for server logic. I also work with Next.js and TypeScript on personal projects like this portfolio.",
     highlights: ["React & Node.js daily", "MongoDB & REST APIs", "Next.js & TypeScript"],
   },
-  
 ] as const;
 
 type TopicKey = (typeof aboutTopics)[number]["key"];
@@ -39,7 +38,6 @@ type TopicKey = (typeof aboutTopics)[number]["key"];
 const KEY_MAP: Record<string, TopicKey> = {
   KeyW: "W",
   KeyM: "M",
-  // KeyU: "U",
 };
 
 export default function About() {
@@ -140,7 +138,7 @@ export default function About() {
           <div className="flex items-center gap-2 mb-6">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="font-mono text-xs text-muted">
-              {shiftHeld ? "shift — more detail" : "W / M / U — pick a topic · space — next"}
+              {shiftHeld ? "shift — more detail" : "W / M — pick a topic · space — next"}
             </span>
           </div>
 
@@ -192,9 +190,7 @@ export default function About() {
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">W</kbd>{" "}
             work ·{" "}
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">M</kbd>{" "}
-            stack ·{" "}
-            <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">U</kbd>{" "}
-            design · hold{" "}
+            stack · hold{" "}
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">Shift</kbd>{" "}
             for detail
           </p>
@@ -213,7 +209,6 @@ export default function About() {
               <KeyboardKey label="R" />
               <KeyboardKey label="T" />
               <KeyboardKey label="Y" />
-              <KeyboardKey label="U" />
             </div>
             <div className="flex gap-2 mb-2 justify-center">
               <KeyboardKey label="A" />
@@ -242,13 +237,7 @@ export default function About() {
                 <KeyboardKey label="X" />
                 <KeyboardKey label="C" />
                 <KeyboardKey label="V" />
-                <KeyboardKey
-                  label="U"
-                  sublabel="ui"
-                  active={isKeyActive("U")}
-                  pressed={isKeyPressed("U")}
-                  onClick={() => goToKey("U")}
-                />
+                <KeyboardKey label="B" />
               </div>
             </div>
             <KeyboardKey
