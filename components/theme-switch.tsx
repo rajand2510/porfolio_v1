@@ -9,7 +9,7 @@ export default function ThemeSwitch() {
 
   return (
     <button
-      className="fixed bottom-5 right-5 w-11 h-11 border border-line bg-surface flex items-center justify-center hover:border-accent hover:text-accent transition-colors z-50"
+      className="fixed bottom-20 sm:bottom-5 right-4 sm:right-5 w-11 h-11 border border-line bg-surface flex items-center justify-center hover:border-accent hover:text-accent transition-colors z-50 shadow-md"
       onClick={toggleTheme}
       aria-label="Toggle theme"
     >

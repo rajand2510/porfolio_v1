@@ -77,6 +77,14 @@ export const workProcessData = [
     detail:
       "Monitoring, quick hotfixes, retro notes. The loop closes when the feature works for real users.",
   },
+  {
+    phase: "05",
+    title: "AI as my assistant",
+    summary:
+      "I pair with AI tools daily — for research, boilerplate, and debugging — while I stay in the driver's seat.",
+    detail:
+      "Cursor and ChatGPT are part of my workflow, like a sharp teammate who never sleeps. I use them to explore options and move faster, but I review every change, own the architecture, and make the final call.",
+  },
 ] as const;
 
 interface ProjectLink {

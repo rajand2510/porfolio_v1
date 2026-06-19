@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import SectionHeading from "./section-heading";
 import KeyboardKey from "./keyboard-key";
 import { useSectionInView } from "@/lib/hooks";
+import { isTypingTarget, useKeyboardSection } from "@/lib/use-keyboard-section";
 import { motion } from "framer-motion";
 import { IconType } from "react-icons";
 import {
@@ -63,7 +64,7 @@ export default function Skills() {
   const [index, setIndex] = useState(0);
   const [shiftHeld, setShiftHeld] = useState(false);
   const [pressedKey, setPressedKey] = useState<string | null>(null);
-  const [inView, setInView] = useState(false);
+  const keyboardActive = useKeyboardSection("Skills");
   const filteredRef = useRef(skills);
   const pressTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const lastSpaceRef = useRef(0);
@@ -115,19 +116,15 @@ export default function Skills() {
   }, [filtered.length, index]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.3 }
-    );
-    const el = document.getElementById("skills");
-    if (el) observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+    if (!keyboardActive) setShiftHeld(false);
+  }, [keyboardActive]);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!keyboardActive) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
+      if (isTypingTarget(e.target)) return;
+
       const cat = FILTER_KEYS[e.code];
       if (cat && !e.repeat) {
         const keyLabel = e.code.replace("Key", "");
@@ -161,7 +158,7 @@ export default function Skills() {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("keyup", onKeyUp);
     };
-  }, [inView, nextSkill, prevSkill, setFilterAndReset]);
+  }, [keyboardActive, nextSkill, prevSkill, setFilterAndReset]);
 
   const isFilterActive = (key: FilterKey) => {
     const map: Record<FilterKey, Category> = {
@@ -177,12 +174,12 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="max-w-6xl mx-auto px-5 py-24 scroll-mt-28 sm:scroll-mt-36 border-t border-line"
+      className="max-w-6xl mx-auto px-4 sm:px-5 py-16 sm:py-24 scroll-mt-28 sm:scroll-mt-36 border-t border-line"
     >
       <SectionHeading subtitle="skills">What I use</SectionHeading>
 
-      <div className="grid lg:grid-cols-2 gap-10 items-start">
-        <div className="bg-surface border border-line p-6 sm:p-8 min-h-[280px]">
+      <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 items-start">
+        <div className="bg-surface border border-line p-5 sm:p-8 min-h-[240px] sm:min-h-[280px] order-1 lg:order-none">
           <div className="flex items-center gap-2 mb-6">
             <span className="w-2 h-2 rounded-full bg-accent" />
             <span className="font-mono text-xs text-muted">
@@ -204,11 +201,11 @@ export default function Skills() {
                     <ActiveIcon className="text-2xl" />
                   </motion.span>
                   <div>
-                    <h3 className="font-display text-2xl font-bold">{active.name}</h3>
+                    <h3 className="font-display text-xl sm:text-2xl font-bold">{active.name}</h3>
                     <p className="font-mono text-xs text-accent">{active.category}</p>
                   </div>
                 </div>
-                <p className="text-muted leading-relaxed text-lg">
+                <p className="text-muted leading-relaxed text-base sm:text-lg">
                   {shiftHeld ? active.detail : active.note}
                 </p>
               </motion.div>
@@ -227,16 +224,20 @@ export default function Skills() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-4">
-          <p className="font-mono text-xs text-muted text-center mb-2">
+        <div className="flex flex-col items-center gap-4 w-full order-2 lg:order-none">
+          <p className="font-mono text-xs text-muted text-center mb-2 hidden sm:block">
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">A</kbd> all ·{" "}
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">F</kbd> frontend ·{" "}
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">B</kbd> backend ·{" "}
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">T</kbd> tools ·{" "}
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">Space</kbd> next
           </p>
+          <p className="font-mono text-xs text-muted text-center mb-2 sm:hidden">
+            Tap filter keys or skill chips below
+          </p>
 
-          <div className="w-full max-w-md bg-[var(--key-bg)] border border-line rounded-xl p-4 sm:p-5 shadow-lg">
+          <div className="w-full max-w-md overflow-x-auto">
+            <div className="min-w-[20rem] bg-[var(--key-bg)] border border-line rounded-xl p-4 sm:p-5 shadow-lg">
             <div className="flex gap-2 mb-2 justify-center flex-wrap">
               {["Q", "E", "R", "Y", "U"].map((k) => (
                 <KeyboardKey key={k} label={k} />
@@ -292,6 +293,7 @@ export default function Skills() {
               pressed={pressedKey === "Space"}
               onClick={nextSkill}
             />
+            </div>
           </div>
 
           <ul className="flex flex-wrap gap-2 justify-center w-full max-w-md">

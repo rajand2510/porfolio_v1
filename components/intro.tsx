@@ -17,7 +17,7 @@ export default function Intro() {
     <section
       ref={ref}
       id="home"
-      className="min-h-[calc(100vh-5rem)] max-w-6xl mx-auto px-5 pt-8 pb-20 scroll-mt-28 sm:scroll-mt-36 flex flex-col justify-center"
+      className="min-h-[calc(100vh-5rem)] max-w-6xl mx-auto px-4 sm:px-5 pt-6 sm:pt-8 pb-16 sm:pb-20 scroll-mt-28 sm:scroll-mt-36 flex flex-col justify-center"
     >
       <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
         <div>
@@ -31,7 +31,7 @@ export default function Intro() {
           </motion.p>
 
           <motion.h1
-            className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-balance"
+            className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-balance"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -42,7 +42,7 @@ export default function Intro() {
           </motion.h1>
 
           <motion.p
-            className="mt-6 text-lg text-muted max-w-lg leading-relaxed"
+            className="mt-6 text-base sm:text-lg text-muted max-w-lg leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.5 }}
@@ -60,7 +60,7 @@ export default function Intro() {
           >
             <Link
               href="#contact"
-              className="group inline-flex items-center gap-2 bg-ink text-[var(--bg)] px-6 py-3 text-sm font-medium hover:bg-accent transition-colors"
+              className="group inline-flex items-center justify-center gap-2 bg-ink text-[var(--bg)] px-5 sm:px-6 py-3 text-sm font-medium hover:bg-accent transition-colors w-full sm:w-auto"
               onClick={() => {
                 setActiveSection("Contact");
                 setTimeOfLastClick(Date.now());
@@ -71,7 +71,7 @@ export default function Intro() {
             </Link>
 
             <a
-              className="inline-flex items-center gap-2 border border-line px-6 py-3 text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-line px-5 sm:px-6 py-3 text-sm font-medium hover:border-accent hover:text-accent transition-colors w-full sm:w-auto"
               href="https://drive.google.com/file/d/13F6hCRPkoYkDyD7L4aEv-BrytGXW8eNK/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
@@ -126,7 +126,7 @@ export default function Intro() {
       </div>
 
       <motion.div
-        className="mt-20 grid grid-cols-3 gap-6 max-w-lg border-t border-line pt-8"
+        className="mt-12 sm:mt-20 grid grid-cols-3 gap-4 sm:gap-6 max-w-lg border-t border-line pt-6 sm:pt-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}

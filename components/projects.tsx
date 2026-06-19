@@ -12,7 +12,7 @@ export default function Projects() {
     <section
       ref={ref}
       id="projects"
-      className="max-w-6xl mx-auto px-5 py-24 scroll-mt-28 sm:scroll-mt-36"
+      className="max-w-6xl mx-auto px-4 sm:px-5 py-16 sm:py-24 scroll-mt-28 sm:scroll-mt-36"
     >
       <SectionHeading subtitle="work" align="center">My projects</SectionHeading>
       <div className="flex flex-col items-center">

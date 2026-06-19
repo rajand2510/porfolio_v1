@@ -5,6 +5,7 @@ import SectionHeading from "./section-heading";
 import KeyboardKey from "./keyboard-key";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
+import { isTypingTarget, useKeyboardSection } from "@/lib/use-keyboard-section";
 
 const aboutTopics = [
   {
@@ -46,7 +47,7 @@ export default function About() {
   const [shiftHeld, setShiftHeld] = useState(false);
   const [pressedKey, setPressedKey] = useState<TopicKey | null>(null);
   const [spacePressed, setSpacePressed] = useState(false);
-  const [inView, setInView] = useState(false);
+  const keyboardActive = useKeyboardSection("About");
   const pressTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const spaceTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const lastSpaceRef = useRef(0);
@@ -85,19 +86,17 @@ export default function About() {
   }, [flashSpace]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.3 }
-    );
-    const el = document.getElementById("about");
-    if (el) observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+    if (!keyboardActive) {
+      setShiftHeld(false);
+    }
+  }, [keyboardActive]);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!keyboardActive) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
+      if (isTypingTarget(e.target)) return;
+
       if (e.code === "Space") {
         e.preventDefault();
         const now = Date.now();
@@ -120,7 +119,7 @@ export default function About() {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("keyup", onKeyUp);
     };
-  }, [inView, nextStep, goToKey]);
+  }, [keyboardActive, nextStep, goToKey]);
 
   const isKeyActive = (key: TopicKey) => current.key === key;
   const isKeyPressed = (key: TopicKey) => pressedKey === key;
@@ -129,7 +128,7 @@ export default function About() {
     <section
       ref={ref}
       id="about"
-      className="max-w-6xl mx-auto px-5 py-24 scroll-mt-28 sm:scroll-mt-36"
+      className="max-w-6xl mx-auto px-4 sm:px-5 py-16 sm:py-24 scroll-mt-28 sm:scroll-mt-36"
     >
       <SectionHeading subtitle="about">A bit about me</SectionHeading>
 
@@ -150,7 +149,7 @@ export default function About() {
               <p className="font-mono text-accent text-sm mb-2">
                 {current.label} · Tuvoc Technologies
               </p>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold mb-4">
+              <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold mb-4">
                 {current.headline}
               </h3>
               <p className="text-muted leading-relaxed text-lg mb-6">
@@ -195,7 +194,7 @@ export default function About() {
             for detail
           </p>
 
-          <div className="w-full max-w-md bg-[var(--key-bg)] border border-line rounded-xl p-4 sm:p-5 shadow-lg">
+          <div className="w-full max-w-lg sm:max-w-xl bg-[var(--key-bg)] border border-line rounded-xl p-4 sm:p-5 shadow-lg">
             <div className="flex gap-2 mb-2 justify-center">
               <KeyboardKey label="Q" />
               <KeyboardKey
@@ -217,13 +216,6 @@ export default function About() {
               <KeyboardKey label="F" />
               <KeyboardKey label="G" />
               <KeyboardKey label="H" />
-              <KeyboardKey
-                label="M"
-                sublabel="mern"
-                active={isKeyActive("M")}
-                pressed={isKeyPressed("M")}
-                onClick={() => goToKey("M")}
-              />
             </div>
             <div className="flex gap-2 mb-3 items-center">
               <KeyboardKey
@@ -232,22 +224,31 @@ export default function About() {
                 active={shiftHeld}
                 pressed={shiftHeld}
               />
-              <div className="flex gap-2 flex-1 justify-center">
+              <div className="flex gap-2 flex-1 justify-center min-w-0">
                 <KeyboardKey label="Z" />
                 <KeyboardKey label="X" />
                 <KeyboardKey label="C" />
                 <KeyboardKey label="V" />
                 <KeyboardKey label="B" />
               </div>
+              <KeyboardKey
+                label="M"
+                sublabel="mern"
+                active={isKeyActive("M")}
+                pressed={isKeyPressed("M")}
+                onClick={() => goToKey("M")}
+              />
             </div>
-            <KeyboardKey
-              label="Space"
-              sublabel="next topic"
-              wide
-              active={!shiftHeld}
-              pressed={spacePressed}
-              onClick={nextStep}
-            />
+            <div className="flex w-full">
+              <KeyboardKey
+                label="Space"
+                sublabel="next topic"
+                wide
+                active={!shiftHeld}
+                pressed={spacePressed}
+                onClick={nextStep}
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-3 gap-2 w-full max-w-md mt-2">

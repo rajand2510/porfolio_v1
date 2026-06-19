@@ -44,12 +44,12 @@ export default function Contact() {
     <motion.section
       id="contact"
       ref={ref}
-      className="max-w-6xl mx-auto px-5 py-24 scroll-mt-28 sm:scroll-mt-36 border-t border-line"
+      className="max-w-6xl mx-auto px-4 sm:px-5 py-16 sm:py-24 scroll-mt-28 sm:scroll-mt-36 border-t border-line"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
     >
-      <div className="grid lg:grid-cols-2 gap-12">
+      <div className="grid lg:grid-cols-2 gap-8 sm:gap-12">
         <div>
           <SectionHeading subtitle="contact">Let&apos;s talk</SectionHeading>
           <p className="text-muted text-lg leading-relaxed -mt-4">

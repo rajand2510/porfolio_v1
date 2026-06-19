@@ -24,8 +24,8 @@ export default function KeyboardKey({
       type={onClick ? "button" : undefined}
       onClick={onClick}
       className={`
-        relative flex flex-col items-center justify-center rounded-md border-2 font-mono text-xs select-none transition-all duration-150
-        ${wide ? "flex-1 h-12" : "w-14 h-12 sm:w-16"}
+        relative flex flex-col items-center justify-center rounded-md border-2 font-mono text-xs select-none transition-all duration-150 shrink-0
+        ${wide ? "flex-1 w-full min-w-0 h-12" : "w-14 h-12 sm:w-16"}
         ${active ? "border-accent bg-accent text-white shadow-[0_4px_0_#b83d1f]" : "border-line bg-[var(--key-bg)] text-ink"}
         ${pressed ? "translate-y-1 shadow-none" : active ? "" : "shadow-[0_4px_0_var(--border)]"}
         ${onClick && !active ? "hover:border-accent/60 cursor-pointer" : ""}
