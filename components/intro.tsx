@@ -31,7 +31,7 @@ export default function Intro() {
           </motion.p>
 
           <motion.h1
-            className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-balance"
+            className="font-display text-[2.25rem] min-[375px]:text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-balance"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -53,7 +53,7 @@ export default function Intro() {
           </motion.p>
 
           <motion.div
-            className="mt-10 flex flex-wrap items-center gap-3"
+            className="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
@@ -80,7 +80,7 @@ export default function Intro() {
               <HiDownload />
             </a>
 
-            <div className="flex gap-2 ml-1">
+            <div className="flex gap-2 sm:ml-1 justify-center sm:justify-start">
               <a
                 className="p-3 border border-line hover:border-accent hover:text-accent transition-colors"
                 href="https://www.linkedin.com/in/rajan-dhariyaparmar-7bb7a2233/"

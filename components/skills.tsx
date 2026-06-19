@@ -224,7 +224,7 @@ export default function Skills() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-4 w-full order-2 lg:order-none">
+        <div className="flex flex-col items-center gap-4 w-full min-w-0 order-2 lg:order-none">
           <p className="font-mono text-xs text-muted text-center mb-2 hidden sm:block">
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">A</kbd> all ·{" "}
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">F</kbd> frontend ·{" "}
@@ -236,9 +236,8 @@ export default function Skills() {
             Tap filter keys or skill chips below
           </p>
 
-          <div className="w-full max-w-md overflow-x-auto">
-            <div className="min-w-[20rem] bg-[var(--key-bg)] border border-line rounded-xl p-4 sm:p-5 shadow-lg">
-            <div className="flex gap-2 mb-2 justify-center flex-wrap">
+          <div className="w-full bg-[var(--key-bg)] border border-line rounded-xl p-3 sm:p-5 shadow-lg">
+            <div className="grid grid-cols-6 gap-1.5 sm:gap-2 mb-2">
               {["Q", "E", "R", "Y", "U"].map((k) => (
                 <KeyboardKey key={k} label={k} />
               ))}
@@ -250,7 +249,7 @@ export default function Skills() {
                 onClick={() => setFilterAndReset("Tools", "T")}
               />
             </div>
-            <div className="flex gap-2 mb-2 justify-center flex-wrap">
+            <div className="grid grid-cols-7 gap-1.5 sm:gap-2 mb-2">
               <KeyboardKey
                 label="A"
                 sublabel="all"
@@ -277,26 +276,29 @@ export default function Skills() {
                 onClick={() => setFilterAndReset("Backend", "B")}
               />
             </div>
-            <div className="flex gap-2 mb-3 items-center">
-              <KeyboardKey label="Shift" wide active={shiftHeld} pressed={shiftHeld} />
-              <div className="flex gap-2 flex-1 justify-center">
+            <div className="flex gap-1.5 sm:gap-2 mb-3 items-stretch w-full">
+              <div className="w-[22%] min-w-0">
+                <KeyboardKey label="Shift" wide active={shiftHeld} pressed={shiftHeld} />
+              </div>
+              <div className="grid grid-cols-4 gap-1.5 sm:gap-2 flex-1 min-w-0">
                 {["Z", "X", "C", "V"].map((k) => (
                   <KeyboardKey key={k} label={k} />
                 ))}
               </div>
             </div>
-            <KeyboardKey
-              label="Space"
-              sublabel="next skill"
-              wide
-              active={!shiftHeld}
-              pressed={pressedKey === "Space"}
-              onClick={nextSkill}
-            />
+            <div className="flex w-full">
+              <KeyboardKey
+                label="Space"
+                sublabel="next skill"
+                wide
+                active={!shiftHeld}
+                pressed={pressedKey === "Space"}
+                onClick={nextSkill}
+              />
             </div>
           </div>
 
-          <ul className="flex flex-wrap gap-2 justify-center w-full max-w-md">
+          <ul className="flex flex-wrap gap-2 justify-center w-full">
             {filtered.map((skill, i) => {
               const Icon = skill.icon;
               const isSelected = i === index;

@@ -12,7 +12,7 @@ export default function SectionHeading({
   align = "left",
 }: SectionHeadingProps) {
   return (
-    <div className={`mb-12 ${align === "center" ? "text-center" : ""}`}>
+    <div className={`mb-8 sm:mb-12 ${align === "center" ? "text-center" : ""}`}>
       <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-3">
         {subtitle ?? "section"}
       </p>

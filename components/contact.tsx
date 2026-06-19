@@ -58,7 +58,7 @@ export default function Contact() {
           </p>
           <a
             href="mailto:rajandalvadi2510@gmail.com"
-            className="inline-block mt-6 font-mono text-accent hover:underline"
+            className="inline-block mt-6 font-mono text-sm sm:text-base text-accent hover:underline break-all"
           >
             rajandalvadi2510@gmail.com
           </a>

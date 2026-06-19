@@ -135,9 +135,14 @@ export default function About() {
       <div className="grid lg:grid-cols-2 gap-10 items-start">
         <div className="bg-surface border border-line p-6 sm:p-8">
           <div className="flex items-center gap-2 mb-6">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse shrink-0" />
             <span className="font-mono text-xs text-muted">
-              {shiftHeld ? "shift — more detail" : "W / M — pick a topic · space — next"}
+              <span className="hidden sm:inline">
+                {shiftHeld ? "shift — more detail" : "W / M — pick a topic · space — next"}
+              </span>
+              <span className="sm:hidden">
+                {shiftHeld ? "shift — detail" : "Tap W, M, or Space"}
+              </span>
             </span>
           </div>
 
@@ -152,7 +157,7 @@ export default function About() {
               <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold mb-4">
                 {current.headline}
               </h3>
-              <p className="text-muted leading-relaxed text-lg mb-6">
+              <p className="text-muted leading-relaxed text-base sm:text-lg mb-6">
                 {shiftHeld ? current.detail : current.summary}
               </p>
               <ul className="space-y-2">
@@ -183,8 +188,8 @@ export default function About() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-4">
-          <p className="font-mono text-xs text-muted text-center mb-2">
+        <div className="flex flex-col items-center gap-4 w-full min-w-0">
+          <p className="font-mono text-xs text-muted text-center mb-2 px-1 hidden sm:block">
             Press{" "}
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">W</kbd>{" "}
             work ·{" "}
@@ -193,9 +198,12 @@ export default function About() {
             <kbd className="px-1.5 py-0.5 bg-accent-dim text-accent rounded">Shift</kbd>{" "}
             for detail
           </p>
+          <p className="font-mono text-xs text-muted text-center mb-2 sm:hidden">
+            Tap keys below to explore
+          </p>
 
-          <div className="w-full max-w-lg sm:max-w-xl bg-[var(--key-bg)] border border-line rounded-xl p-4 sm:p-5 shadow-lg">
-            <div className="flex gap-2 mb-2 justify-center">
+          <div className="w-full bg-[var(--key-bg)] border border-line rounded-xl p-3 sm:p-5 shadow-lg">
+            <div className="grid grid-cols-6 gap-1.5 sm:gap-2 mb-2">
               <KeyboardKey label="Q" />
               <KeyboardKey
                 label="W"
@@ -209,7 +217,7 @@ export default function About() {
               <KeyboardKey label="T" />
               <KeyboardKey label="Y" />
             </div>
-            <div className="flex gap-2 mb-2 justify-center">
+            <div className="grid grid-cols-6 gap-1.5 sm:gap-2 mb-2">
               <KeyboardKey label="A" />
               <KeyboardKey label="S" />
               <KeyboardKey label="D" />
@@ -217,27 +225,31 @@ export default function About() {
               <KeyboardKey label="G" />
               <KeyboardKey label="H" />
             </div>
-            <div className="flex gap-2 mb-3 items-center">
-              <KeyboardKey
-                label="Shift"
-                wide
-                active={shiftHeld}
-                pressed={shiftHeld}
-              />
-              <div className="flex gap-2 flex-1 justify-center min-w-0">
+            <div className="flex gap-1.5 sm:gap-2 mb-3 items-stretch w-full">
+              <div className="w-[22%] min-w-0">
+                <KeyboardKey
+                  label="Shift"
+                  wide
+                  active={shiftHeld}
+                  pressed={shiftHeld}
+                />
+              </div>
+              <div className="grid grid-cols-5 gap-1.5 sm:gap-2 flex-1 min-w-0">
                 <KeyboardKey label="Z" />
                 <KeyboardKey label="X" />
                 <KeyboardKey label="C" />
                 <KeyboardKey label="V" />
                 <KeyboardKey label="B" />
               </div>
-              <KeyboardKey
-                label="M"
-                sublabel="mern"
-                active={isKeyActive("M")}
-                pressed={isKeyPressed("M")}
-                onClick={() => goToKey("M")}
-              />
+              <div className="w-[14%] min-w-0">
+                <KeyboardKey
+                  label="M"
+                  sublabel="mern"
+                  active={isKeyActive("M")}
+                  pressed={isKeyPressed("M")}
+                  onClick={() => goToKey("M")}
+                />
+              </div>
             </div>
             <div className="flex w-full">
               <KeyboardKey
@@ -251,7 +263,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 w-full max-w-md mt-2">
+          <div className="grid grid-cols-3 gap-2 w-full mt-2">
             {[
               { label: "Role", value: "Full Stack" },
               { label: "Company", value: "Tuvoc" },

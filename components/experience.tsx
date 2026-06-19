@@ -19,7 +19,7 @@ export default function Experience() {
     <section
       id="experience"
       ref={ref}
-      className="max-w-6xl mx-auto px-5 py-24 scroll-mt-28 sm:scroll-mt-36"
+      className="max-w-6xl mx-auto px-4 sm:px-5 py-16 sm:py-24 scroll-mt-28 sm:scroll-mt-36 overflow-hidden"
     >
       <SectionHeading subtitle="timeline">My experience</SectionHeading>
       <VerticalTimeline lineColor="">
