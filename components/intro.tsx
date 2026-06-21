@@ -83,7 +83,7 @@ export default function Intro() {
             <div className="flex gap-2 sm:ml-1 justify-center sm:justify-start">
               <a
                 className="p-3 border border-line hover:border-accent hover:text-accent transition-colors"
-                href="https://www.linkedin.com/in/rajan-dhariyaparmar-7bb7a2233/"
+                href="https://www.linkedin.com/in/rajan-dhariyaparmar/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
