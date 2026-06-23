@@ -8,7 +8,7 @@ import Skills from "@/components/skills";
 
 export default function Home() {
   return (
-    <main className="pt-16 sm:pt-28 overflow-x-hidden">
+    <main className="pt-16 lg:pt-20 overflow-x-hidden">
       <Intro />
       <About />
       <HowIWork />

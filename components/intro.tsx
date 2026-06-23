@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { BsArrowRight, BsLinkedin } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
@@ -9,58 +10,160 @@ import { FaGithub } from "react-icons/fa";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
+const roles = [
+  "Full-Stack Developer",
+  "MERN Engineer",
+  "UI Builder",
+];
+
+const stats = [
+  { label: "Stack", value: "MERN" },
+  { label: "CGPA", value: "8.18" },
+  { label: "Projects", value: "6+" },
+];
+
+const techTags = [
+  "React",
+  "Node.js",
+  "MongoDB",
+  "TypeScript",
+  "Next.js",
+  "Express",
+  "Tailwind",
+];
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+};
+
 export default function Intro() {
   const { ref } = useSectionInView("Home");
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setRoleIndex((i) => (i + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section
       ref={ref}
       id="home"
-      className="min-h-[calc(100vh-5rem)] max-w-6xl mx-auto px-4 sm:px-5 pt-6 sm:pt-8 pb-16 sm:pb-20 scroll-mt-28 sm:scroll-mt-36 flex flex-col justify-center"
+      className="max-w-6xl mx-auto px-4 sm:px-5 pt-2 sm:pt-3 pb-16 sm:pb-20 scroll-mt-28 sm:scroll-mt-36"
     >
-      <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
-        <div>
-          <motion.p
-            className="font-mono text-sm text-accent mb-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            Software Engineer · MERN Stack
-          </motion.p>
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        {/* Intro card */}
+        <motion.div
+          variants={item}
+          className="md:col-span-7 border border-line bg-surface/60 backdrop-blur-sm p-6 sm:p-8 flex flex-col justify-between min-h-[280px] sm:min-h-[320px]"
+        >
+          <div>
+            <div className="flex items-center justify-between gap-3 mb-6">
+              <span className="inline-flex items-center gap-2 font-mono text-xs text-accent">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                Available for work
+              </span>
+              <span className="font-mono text-xs text-muted">01 — Home</span>
+            </div>
 
-          <motion.h1
-            className="font-display text-[2.25rem] min-[375px]:text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-balance"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Rajan
-            <br />
-            <span className="text-muted">Dhariyaparmar</span>
-          </motion.h1>
+            <p className="font-mono text-sm text-muted mb-3">
+              Hey, I&apos;m
+            </p>
 
-          <motion.p
-            className="mt-6 text-base sm:text-lg text-muted max-w-lg leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.5 }}
-          >
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.02] tracking-tight">
+              Rajan
+              <span className="block text-muted">Dhariyaparmar</span>
+            </h1>
+
+            <div className="h-7 mt-4 overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={roleIndex}
+                  className="font-mono text-sm sm:text-base text-accent"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {roles[roleIndex]}
+                  <span className="animate-blink">_</span>
+                </motion.p>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <p className="mt-6 text-sm sm:text-base text-muted leading-relaxed max-w-md">
             I build web products end to end — from API design to pixel-level UI.
             Currently shipping at{" "}
             <span className="text-ink font-medium">Tuvoc Technologies</span>.
-          </motion.p>
+          </p>
+        </motion.div>
 
-          <motion.div
-            className="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
-          >
+        {/* Photo card */}
+        <motion.div
+          variants={item}
+          className="md:col-span-5 relative border border-line bg-surface/40 overflow-hidden min-h-[280px] sm:min-h-[320px] group"
+        >
+          <Image
+            src="/myimage.jpg"
+            alt="Rajan Dhariyaparmar"
+            width={480}
+            height={560}
+            quality={95}
+            priority
+            className="absolute inset-0 w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-ink/10 to-transparent" />
+
+          <div className="absolute top-4 right-4 font-mono text-[0.65rem] bg-[var(--bg)]/80 backdrop-blur border border-line px-2.5 py-1">
+            &lt;dev /&gt;
+          </div>
+
+          <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
+            <div>
+              <p className="font-display text-lg sm:text-xl font-bold text-white">
+                Rajan D.
+              </p>
+              <p className="font-mono text-xs text-white/70 mt-0.5">
+                Ahmedabad, India
+              </p>
+            </div>
+            <span className="shrink-0 bg-accent text-white font-mono text-xs px-3 py-1.5">
+              MERN
+            </span>
+          </div>
+        </motion.div>
+
+        {/* CTA card */}
+        <motion.div
+          variants={item}
+          className="md:col-span-5 border border-line bg-surface/60 backdrop-blur-sm p-5 sm:p-6 flex flex-col justify-center gap-4"
+        >
+          <p className="font-mono text-xs text-muted uppercase tracking-wider">
+            Let&apos;s work together
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-3">
             <Link
               href="#contact"
-              className="group inline-flex items-center justify-center gap-2 bg-ink text-[var(--bg)] px-5 sm:px-6 py-3 text-sm font-medium hover:bg-accent transition-colors w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2 bg-ink text-[var(--bg)] px-5 py-3 text-sm font-medium hover:bg-accent transition-colors flex-1"
               onClick={() => {
                 setActiveSection("Contact");
                 setTimeOfLastClick(Date.now());
@@ -71,7 +174,7 @@ export default function Intro() {
             </Link>
 
             <a
-              className="inline-flex items-center justify-center gap-2 border border-line px-5 sm:px-6 py-3 text-sm font-medium hover:border-accent hover:text-accent transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 border border-line px-5 py-3 text-sm font-medium hover:border-accent hover:text-accent transition-colors flex-1"
               href="https://drive.google.com/file/d/13F6hCRPkoYkDyD7L4aEv-BrytGXW8eNK/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
@@ -79,70 +182,84 @@ export default function Intro() {
               Resume
               <HiDownload />
             </a>
+          </div>
 
-            <div className="flex gap-2 sm:ml-1 justify-center sm:justify-start">
-              <a
-                className="p-3 border border-line hover:border-accent hover:text-accent transition-colors"
-                href="https://www.linkedin.com/in/rajan-dhariyaparmar/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <BsLinkedin />
-              </a>
-              <a
-                className="p-3 border border-line hover:border-accent hover:text-accent transition-colors"
-                href="https://github.com/rajand2510"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <FaGithub />
-              </a>
-            </div>
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="relative mx-auto lg:mx-0"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          <div className="absolute -inset-3 border border-accent/30 -z-10 translate-x-3 translate-y-3" />
-          <Image
-            src="/myimage.jpg"
-            alt="Rajan Dhariyaparmar"
-            width={280}
-            height={340}
-            quality={95}
-            priority
-            className="w-56 sm:w-64 lg:w-72 h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
-          />
-          <div className="absolute -bottom-4 -left-4 bg-accent text-white font-mono text-xs px-3 py-2">
-            Ahmedabad, IN
+          <div className="flex gap-2">
+            <a
+              className="flex-1 inline-flex items-center justify-center gap-2 p-3 border border-line hover:border-accent hover:text-accent transition-colors text-sm"
+              href="https://www.linkedin.com/in/rajan-dhariyaparmar/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <BsLinkedin />
+              LinkedIn
+            </a>
+            <a
+              className="flex-1 inline-flex items-center justify-center gap-2 p-3 border border-line hover:border-accent hover:text-accent transition-colors text-sm"
+              href="https://github.com/rajand2510"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub />
+              GitHub
+            </a>
           </div>
         </motion.div>
-      </div>
 
-      <motion.div
-        className="mt-12 sm:mt-20 grid grid-cols-3 gap-4 sm:gap-6 max-w-lg border-t border-line pt-6 sm:pt-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        {[
-          { label: "Stack", value: "MERN" },
-          { label: "CGPA", value: "8.18" },
-          { label: "Projects", value: "6+" },
-        ].map((stat) => (
-          <div key={stat.label}>
-            <p className="font-display text-2xl font-bold">{stat.value}</p>
-            <p className="text-xs text-muted uppercase tracking-wider mt-1">
+        {/* Stats cards */}
+        {stats.map((stat) => (
+          <motion.div
+            key={stat.label}
+            variants={item}
+            className="md:col-span-2 border border-line bg-surface/60 backdrop-blur-sm p-4 sm:p-5 flex flex-col justify-center hover:border-accent/40 transition-colors"
+          >
+            <p className="font-display text-2xl sm:text-3xl font-bold">{stat.value}</p>
+            <p className="font-mono text-[0.65rem] sm:text-xs text-muted uppercase tracking-wider mt-1">
               {stat.label}
             </p>
-          </div>
+          </motion.div>
         ))}
+
+        {/* Terminal strip */}
+        <motion.div
+          variants={item}
+          className="md:col-span-12 border border-line bg-ink text-[var(--bg)] p-4 sm:p-5 font-mono text-xs sm:text-sm overflow-hidden"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <span className="text-accent shrink-0">$</span>
+            <span className="text-white/90">
+              whoami <span className="text-accent">→</span> rajan-dhariyaparmar
+            </span>
+            <span className="hidden sm:inline text-white/30">|</span>
+            <span className="text-white/70">
+              stack <span className="text-accent">→</span> react · node · mongo · ts
+            </span>
+            <span className="hidden md:inline text-white/30">|</span>
+            <span className="text-white/70 hidden md:inline">
+              status <span className="text-accent">→</span> building at Tuvoc
+            </span>
+            <span className="animate-blink text-accent ml-auto hidden sm:inline">█</span>
+          </div>
+        </motion.div>
+
+        {/* Tech marquee */}
+        <motion.div
+          variants={item}
+          className="md:col-span-12 border border-line overflow-hidden py-3 bg-surface/40"
+          aria-hidden
+        >
+          <div className="flex w-max animate-marquee">
+            {[...techTags, ...techTags].map((tag, i) => (
+              <span
+                key={`${tag}-${i}`}
+                className="mx-4 font-mono text-xs text-muted whitespace-nowrap"
+              >
+                {tag}
+                <span className="ml-4 text-accent">/</span>
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );

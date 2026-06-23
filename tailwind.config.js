@@ -23,6 +23,8 @@ module.exports = {
       animation: {
         "fade-up": "fadeUp 0.6s ease-out forwards",
         "key-press": "keyPress 0.15s ease-out",
+        marquee: "marquee 30s linear infinite",
+        blink: "blink 1s step-end infinite",
       },
       keyframes: {
         fadeUp: {
@@ -33,6 +35,14 @@ module.exports = {
           "0%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(3px)" },
           "100%": { transform: "translateY(0)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
         },
       },
     },
